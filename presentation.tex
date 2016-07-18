@@ -224,9 +224,9 @@
     possible to get this value near 1 ($\Rightarrow$ the $discriminate$ step is
     reliable).
 
-  \item This program also tries to maximises
-    $P(coarsen(x_i)|coarsen(x_{i-1}))$, that is the probability we can predict
-    a coarse tag from a previous coarse tag. Very common lemmas to sometimes
+  \item This program also tries to maximise
+    $P(coarsen(x_i)|coarsen(x_{i-1}))$: the probability we can predict
+    a coarse tag from a previous coarse tag. Very common lemmas sometimes
     end up with their own coarse tag.
 
 \end{itemize}
@@ -260,8 +260,8 @@
 
   \item Now we use the tag the previous word has received as context. We
     now try to estimate
-    P(current\hbox{-}tag|previous\hbox{-}tag) the
-    transition probabilites.
+    P(current\hbox{-}tag|previous\hbox{-}tag) --- the
+    transition probabilities.
 
   \item The actual tags are the hidden part of the model.
 
@@ -288,12 +288,12 @@
 
   \item Keep track of the path probabilities through the Markov model.
 
-  \item At an unambigious token, backtrack and output the tags we've
+  \item At an unambiguous token, backtrack and output the tags we've
     remembered.
 
   \item First step, set the probability of a sentinel tag to 1: $V_{1,START} = 1$
 
-  \item At step $n$ for each possible $tag$ we calcuate $V_{n,tag}$
+  \item At step $n$ for each possible $tag$ we calculate $V_{n,tag}$
 
   \item We consider each prev\hbox{-}tag (from all possible previous tags S),
     \[\hspace{-0.5cm}V_{n,tag} &=& \max_{prev\hbox{-}tag \in S} \left(  P( ambg\hbox{-}class | tag ) \cdot P (tag | prev\hbox{-}tag) \cdot V_{n-1,prev\hbox{-}tag}\right)\]
@@ -308,7 +308,7 @@
 \frametitle{Training}
 \begin{itemize}
 
-  \item Supervised training: just estimate the probabilies with their frequency
+  \item Supervised training: just estimate the probabilities with their frequency
     in the corpus.
 
   \item Unsupervised training using Baum-Welch. Idea: iteratively improve our
@@ -328,10 +328,10 @@
   \item In Apertium, considers a context of the previous and next tag.
 
   \item It estimates the best tag by summing all possible
-    $P(prev\hbox{-}tag,tag,next\hbox{-}tag|prev\hbox{-}ambg\hbox{-}class,tag,next\hbox{-}ambg\hbox{-}class)$
+    $P((prev\hbox{-}tag,tag,next\hbox{-}tag)|(prev\hbox{-}ambg\hbox{-}class,tag,next\hbox{-}ambg\hbox{-}class))$
     (no search/decoding process)
 
-  \item Unsupervised learning of these probabilies by an interative process.
+  \item Unsupervised learning of these probabilities by an iterative process.
 
   \item Paper at \url{http://arxiv.org/pdf/1509.05517v1.pdf}.
 
